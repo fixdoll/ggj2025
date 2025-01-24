@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -129,9 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0751f1f3e927e8d46bc99bb7cd5e1359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementTestMode: 1
   ThisRigidBody2D: {fileID: 3306583271396643321}
-  Speed: 10
-  JumpForce: 4
+  Speed: 7
+  JumpForce: 8
+  PushOffset: 0.02
 --- !u!58 &6163114050333626279
 CircleCollider2D:
   m_ObjectHideFlags: 0
