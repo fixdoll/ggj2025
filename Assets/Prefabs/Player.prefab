@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0751f1f3e927e8d46bc99bb7cd5e1359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisRigidBody2D: {fileID: 0}
-  Speed: 1
-  JumpForce: 0
+  ThisRigidBody2D: {fileID: 3306583271396643321}
+  Speed: 10
+  JumpForce: 4
 --- !u!58 &6163114050333626279
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     private void CheckVelocity()
     {
         velocity.x = Input.GetAxis("Horizontal");
-        velocity.y = Input.GetAxis("Vertical");
+        //velocity.y = Input.GetAxis("Vertical");
+
+        if(Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(ThisRigidBody2D.linearVelocityY) < 0.01f)
+        {
+            ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
+        }
     }
 }
