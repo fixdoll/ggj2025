@@ -22194,6 +22194,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1908170853}
     - target: {fileID: 6839082791193274889, guid: de3603d0fb9c12d48ad8b1134f04702a, type: 3}
+      propertyPath: rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839082791193274889, guid: de3603d0fb9c12d48ad8b1134f04702a, type: 3}
       propertyPath: RollPushOffset
       value: 0.1
       objectReference: {fileID: 0}
@@ -22203,11 +22207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451477235671770546, guid: de3603d0fb9c12d48ad8b1134f04702a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.3
+      value: 12.86
       objectReference: {fileID: 0}
     - target: {fileID: 8451477235671770546, guid: de3603d0fb9c12d48ad8b1134f04702a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: 9.83
       objectReference: {fileID: 0}
     - target: {fileID: 8451477235671770546, guid: de3603d0fb9c12d48ad8b1134f04702a, type: 3}
       propertyPath: m_LocalPosition.z
