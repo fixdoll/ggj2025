@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("Water"))
         {
-            ChangeWater(true);
+            if(!underwater) ChangeWater(true);
         }
         if (collision.CompareTag("Target"))
         {

@@ -13,19 +13,43 @@ public class MenuManager : MonoBehaviour
     public HorizontalLayoutGroup LevelView;
     public GameObject LevelButton;
 
-    void Start()
+    public static MenuManager Instance;
+
+    private bool firstLoad;
+    private int progress;
+
+    private void Awake()
     {
-        PlayButton.onClick.AddListener(ShowLevels);
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        progress = PlayerPrefs.GetInt("Progress", 0);
+
+        if (GameFlowController.Instance.checkGameLaunched())
+        {
+            ShowLevels();
+        }
+        else
+        {
+            DontDestroyOnLoad(GameFlowController.Instance);
+            PlayButton.onClick.AddListener(ShowLevels);
+        }
+
     }
 
     private void ShowLevels()
     {
         PlayButton.gameObject.SetActive(false);
-        foreach(var level in Levels)
+        for (int i = 0; i < Levels.Count; i++)
         {
+            string level = Levels[i];
             var button = Instantiate(LevelButton, LevelView.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = level;
-            button.GetComponent<Button>().onClick.AddListener(() => { LaunchScene(level); }) ;
+            bool current = i == progress;
+            bool locked = i > progress;
+
+            button.GetComponent<LevelButtonHandler>().ButtonInit(level, current, locked);
         }
     }
 

@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayController : MonoBehaviour
 {
@@ -37,6 +38,14 @@ public class GameplayController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             CurrentPlayer.MoveToPosition(Checkpoints[currentCheckpoint].transform.position);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9)) //this is a cheat
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8)) //this is a cheat
+        {
+            PlayerPrefs.SetInt("Progress", 2);
         }
     }
 }
