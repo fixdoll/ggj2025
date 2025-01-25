@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D ThisRigidBody2D;
     public KeyCode SizeChangeKey;
     public SpriteRenderer SmallSprite;
-    public CircleCollider2D SmallCollider;
+    public Collider2D SmallCollider;
     public SpriteRenderer LargeSprite;
-    public CircleCollider2D LargeCollider;
+    public Collider2D LargeCollider;
 
 
     [Header("Movement Params")]
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         float direction = Input.GetAxis("Horizontal");
         if (!onAir)
         {
-            ThisRigidBody2D.linearVelocityX = 0f;
+            ThisRigidBody2D.linearVelocity = Vector2.zero;
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
@@ -89,6 +89,15 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Target"))
         {
             Debug.LogWarning("[DEBUG] Target hit");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.otherCollider.CompareTag("Ground"))
+        {
+            onAir = false;
+            ThisRigidBody2D.linearVelocity = Vector2.zero;
         }
     }
 }
