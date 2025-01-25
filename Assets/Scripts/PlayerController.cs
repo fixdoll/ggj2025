@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("0=jump first, 1=directional jump")]
-    public int movementTestMode = 0;
-
     [Header("References")]
     public Rigidbody2D ThisRigidBody2D;
 
@@ -14,7 +11,9 @@ public class PlayerController : MonoBehaviour
     public float Speed;
     public float JumpForce;
     public float PushOffset = 0.02f;
-    
+    public float TerminalVelocity = 1f;
+
+
     private Vector2 velocity;
 
     private bool onAir = false;
@@ -37,49 +36,33 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    private void Update()
+    private void Start()
     {
-        switch (movementTestMode)
+        float idealDrag = Speed / TerminalVelocity;
+        ThisRigidBody2D.linearDamping = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
+    }
+
+    private void FixedUpdate()
+    {
+        CheckOnAir();
+        float direction = Input.GetAxis("Horizontal");
+        if (!onAir)
         {
-            case 0:
-                CheckOnAir();
-                if (onAir)
-                {
-                    velocity.x = Input.GetAxis("Horizontal");
-                    transform.position += (Vector3)velocity * Speed * Time.deltaTime;
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-                    }
-                }
-                break;
-            case 1:
-                CheckOnAir();
-                float direction = Input.GetAxis("Horizontal");
-                if (!onAir)
-                {
-                    ThisRigidBody2D.linearVelocityX = 0f;
-                    if (Input.GetKeyDown(KeyCode.RightArrow))
-                    {
-                        ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-                        ThisRigidBody2D.AddForceX(Speed * 0.5f, ForceMode2D.Impulse);
-                    }
-                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    {
-                        ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-                        ThisRigidBody2D.AddForceX(Speed * -0.5f, ForceMode2D.Impulse);
-                    }
-                }
-                else
-                {
-                    ThisRigidBody2D.AddForceX(Speed * direction * PushOffset, ForceMode2D.Impulse);
-                }
-                break;
-            default:
-                break;
+            ThisRigidBody2D.linearVelocityX = 0f;
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
+                ThisRigidBody2D.AddForceX(Speed * 0.5f, ForceMode2D.Impulse);
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
+                ThisRigidBody2D.AddForceX(Speed * -0.5f, ForceMode2D.Impulse);
+            }
+        }
+        else
+        {
+            ThisRigidBody2D.AddForceX(Speed * direction * PushOffset, ForceMode2D.Impulse);
         }
     }
 
