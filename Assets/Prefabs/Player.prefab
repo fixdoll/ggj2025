@@ -78,10 +78,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisRigidBody2D: {fileID: 3306583271396643321}
   SizeChangeKey: 32
-  SmallSprite: {fileID: 0}
   SmallCollider: {fileID: 0}
   Small3D: {fileID: 3938669593984211117}
-  LargeSprite: {fileID: 8013161052336627448}
   LargeCollider: {fileID: 633648684664819551}
   Large3D: {fileID: 4655765759977711698}
   Speed: 4
@@ -200,7 +198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5834728486832397264
 Transform:
   m_ObjectHideFlags: 0
@@ -231,7 +229,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2854017472838126546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

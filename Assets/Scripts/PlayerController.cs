@@ -7,10 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public Rigidbody2D ThisRigidBody2D;
     public KeyCode SizeChangeKey;
-    public SpriteRenderer SmallSprite;
     public Collider2D SmallCollider;
     public MeshRenderer Small3D;
-    public SpriteRenderer LargeSprite;
     public Collider2D LargeCollider;
     public MeshRenderer Large3D;
 
@@ -116,13 +114,12 @@ public class PlayerController : MonoBehaviour
         {
             sizeState = SizeState.Small;
         }
-        SmallSprite.enabled = !isSmall;
         SmallCollider.enabled = !isSmall;
         Small3D.enabled = !isSmall;
-        LargeSprite.enabled = isSmall;
         LargeCollider.enabled = isSmall;
         Large3D.enabled = isSmall;
         ThisRigidBody2D.freezeRotation = !isSmall;
+        transform.rotation = Quaternion.identity;
     }
 
     void ChangeWater(bool enterWater)
