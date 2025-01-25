@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    public Rigidbody2D ThisRigidBody2D;
     public KeyCode SizeChangeKey;
+    public KeyCode JumpKey;
+    public Rigidbody2D ThisRigidBody2D;
     public Collider2D SmallCollider;
     public MeshRenderer Small3D;
     public Collider2D LargeCollider;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float TerminalVelocity = 1f;
     public float JumpMultiplier = 2f;
 
-    private bool onAir = false;
+    private bool jumpCounter = false;
     private bool underwater = false;
     private SizeState sizeState;
     private float dynGrav;
@@ -49,6 +50,11 @@ public class PlayerController : MonoBehaviour
                 ChangeSize();
             }
         }
+        if (Input.GetKeyDown(JumpKey) && !jumpCounter && !underwater)
+        {
+            jumpCounter = true;
+            SuperJump();
+        }
     }
 
     private void FixedUpdate()
@@ -58,33 +64,9 @@ public class PlayerController : MonoBehaviour
 
         if (!underwater)
         {
-            if (sizeState == SizeState.Small)
-            {
-                CheckOnAir();
-                if (!onAir)
-                {
-                    ThisRigidBody2D.linearVelocity = Vector2.zero;
-                    var addJump = Input.GetKey(KeyCode.UpArrow);
-                    if (Input.GetKey(KeyCode.RightArrow))
-                    {
-                        ThisRigidBody2D.AddForceY(JumpForce * (addJump ? JumpMultiplier : 1f), ForceMode2D.Impulse);
-                        ThisRigidBody2D.AddForceX(Speed * 0.5f, ForceMode2D.Impulse);
-                    }
-                    else if (Input.GetKey(KeyCode.LeftArrow))
-                    {
-                        ThisRigidBody2D.AddForceY(JumpForce * (addJump ? JumpMultiplier : 1), ForceMode2D.Impulse);
-                        ThisRigidBody2D.AddForceX(Speed * -0.5f, ForceMode2D.Impulse);
-                    }
-                }
-                else
-                {
-                    ThisRigidBody2D.AddForceX(Speed * directionX * JumpPushOffset, ForceMode2D.Impulse);
-                }
-            }
-            else if (sizeState == SizeState.Large)
-            {
-                ThisRigidBody2D.AddForceX(Speed * directionX * RollPushOffset, ForceMode2D.Impulse);
-            }
+            ThisRigidBody2D.AddForceX(
+                Speed * directionX * (sizeState == SizeState.Small ? JumpPushOffset : RollPushOffset),
+                ForceMode2D.Impulse);
         }
         else
         {
@@ -92,9 +74,16 @@ public class PlayerController : MonoBehaviour
         }        
     }
 
-    private void CheckOnAir()
+    private void Jump()
     {
-        onAir = Mathf.Abs(ThisRigidBody2D.linearVelocityY) > 0.01f;
+        ThisRigidBody2D.linearVelocityY = 0f;
+        jumpCounter = false;
+        ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
+    }
+
+    private void SuperJump()
+    {
+        ThisRigidBody2D.AddForceY(JumpForce * JumpMultiplier, ForceMode2D.Impulse);
     }
 
     public void MoveToPosition(Vector3 position)
@@ -165,9 +154,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.otherCollider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") && SizeState == SizeState.Small)
         {
-            ThisRigidBody2D.linearVelocity = Vector2.zero;
+            Jump();
         }
     }
 }

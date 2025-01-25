@@ -76,15 +76,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0751f1f3e927e8d46bc99bb7cd5e1359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisRigidBody2D: {fileID: 3306583271396643321}
   SizeChangeKey: 32
+  JumpKey: 273
+  ThisRigidBody2D: {fileID: 3306583271396643321}
   SmallCollider: {fileID: 2554952998615094471}
   Small3D: {fileID: 3938669593984211117}
   LargeCollider: {fileID: 633648684664819551}
   Large3D: {fileID: 4655765759977711698}
   Speed: 4
-  JumpForce: 10
-  JumpPushOffset: 0.02
+  JumpForce: 9
+  JumpPushOffset: 0.06
   RollPushOffset: 0.02
   SwimPushOffset: 5
   TerminalVelocity: 2
