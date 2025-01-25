@@ -9,9 +9,10 @@ public class PlayerController : MonoBehaviour
     public KeyCode SizeChangeKey;
     public SpriteRenderer SmallSprite;
     public Collider2D SmallCollider;
+    public MeshRenderer Small3D;
     public SpriteRenderer LargeSprite;
     public Collider2D LargeCollider;
-    
+    public MeshRenderer Large3D;
 
     [Header("Movement Params")]
     public float Speed;
@@ -117,8 +118,10 @@ public class PlayerController : MonoBehaviour
         }
         SmallSprite.enabled = !isSmall;
         SmallCollider.enabled = !isSmall;
+        Small3D.enabled = !isSmall;
         LargeSprite.enabled = isSmall;
         LargeCollider.enabled = isSmall;
+        Large3D.enabled = isSmall;
         ThisRigidBody2D.freezeRotation = !isSmall;
     }
 
@@ -167,7 +170,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.otherCollider.CompareTag("Ground"))
         {
-            onAir = false;
             ThisRigidBody2D.linearVelocity = Vector2.zero;
         }
     }
