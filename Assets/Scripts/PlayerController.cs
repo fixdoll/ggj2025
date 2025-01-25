@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
         {
             ThisRigidBody2D.gravityScale = sizeState == SizeState.Large ? dynGrav * -4f : 0f;
             ThisRigidBody2D.linearDamping *= 2;
+            jumpCounter = true;
         }
         else
         {
@@ -154,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground") && sizeState == SizeState.Small)
+        if (collision.collider.CompareTag("Ground") && sizeState == SizeState.Small && !underwater)
         {
             Jump();
         }
