@@ -66,6 +66,16 @@ public class PlayerController : MonoBehaviour
         float directionX = Input.GetAxis("Horizontal");
         float directionY = Input.GetAxis("Vertical");
 
+        if(directionX < 0)
+        {
+            transform.localScale = new Vector3(-1,1,1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1,1,1);
+
+        }
+
         if (!underwater)
         {
             ThisRigidBody2D.AddForceX(
@@ -145,7 +155,11 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("Water"))
         {
+            if(!underwater)
+           {
             ChangeWater(true);
+           } 
+           
         }
         if (collision.CompareTag("Target"))
         {

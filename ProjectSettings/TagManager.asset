@@ -10,6 +10,7 @@ TagManager:
   - Bubble
   - Checkpoint
   - Spike
+  - Collectible
   layers:
   - Default
   - TransparentFX
