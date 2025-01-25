@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     public float PushOffset = 0.02f;
     public float TerminalVelocity = 1f;
+    public float JumpMultiplier = 2f;
 
     private bool onAir = false;
     private SizeState sizeState;
@@ -40,26 +41,36 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckOnAir();
         float direction = Input.GetAxis("Horizontal");
-        if (!onAir)
+    
+        if(sizeState == SizeState.Small)
         {
-            ThisRigidBody2D.linearVelocity = Vector2.zero;
-            if (Input.GetKey(KeyCode.RightArrow))
+            CheckOnAir();
+            if (!onAir)
             {
-                ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-                ThisRigidBody2D.AddForceX(Speed * 0.5f, ForceMode2D.Impulse);
+                ThisRigidBody2D.linearVelocity = Vector2.zero;
+                var addJump = Input.GetKey(KeyCode.UpArrow);
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    ThisRigidBody2D.AddForceY(JumpForce * (addJump ? JumpMultiplier : 1f), ForceMode2D.Impulse);
+                    ThisRigidBody2D.AddForceX(Speed * 0.5f, ForceMode2D.Impulse);
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    ThisRigidBody2D.AddForceY(JumpForce * (addJump ? JumpMultiplier : 1), ForceMode2D.Impulse);
+                    ThisRigidBody2D.AddForceX(Speed * -0.5f, ForceMode2D.Impulse);
+                }
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else
             {
-                ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-                ThisRigidBody2D.AddForceX(Speed * -0.5f, ForceMode2D.Impulse);
+                ThisRigidBody2D.AddForceX(Speed * direction * PushOffset, ForceMode2D.Impulse);
             }
         }
-        else
+        else if (sizeState == SizeState.Large)
         {
             ThisRigidBody2D.AddForceX(Speed * direction * PushOffset, ForceMode2D.Impulse);
         }
+
     }
 
     private void CheckOnAir()
@@ -82,7 +93,7 @@ public class PlayerController : MonoBehaviour
         SmallCollider.enabled = !isSmall;
         LargeSprite.enabled = isSmall;
         LargeCollider.enabled = isSmall;
-        ThisRigidBody2D.freezeRotation = isSmall;
+        ThisRigidBody2D.freezeRotation = !isSmall;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
