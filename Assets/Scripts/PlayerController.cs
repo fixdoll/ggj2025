@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour
         if (isSmall)
         {
             sizeState = SizeState.Large;
+
+            FishAnimator.Play("evolving");
         }
         else
         {
