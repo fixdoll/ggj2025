@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody2D ThisRigidBody2D;
+    public KeyCode SizeChangeKey;
+    public SpriteRenderer SmallSprite;
+    public CircleCollider2D SmallCollider;
+    public SpriteRenderer LargeSprite;
+    public CircleCollider2D LargeCollider;
+
 
     [Header("Movement Params")]
     public float Speed;
@@ -13,33 +19,23 @@ public class PlayerController : MonoBehaviour
     public float PushOffset = 0.02f;
     public float TerminalVelocity = 1f;
 
-
-    private Vector2 velocity;
-
     private bool onAir = false;
-
-    /*protected void Update()
-    {
-        CheckVelocity();
-
-        transform.position += (Vector3)velocity * Speed * Time.deltaTime; 
-    }
-
-    private void CheckVelocity()
-    {
-        velocity.x = Input.GetAxis("Horizontal");
-        //velocity.y = Input.GetAxis("Vertical");
-
-        if(Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(ThisRigidBody2D.linearVelocityY) < 0.01f)
-        {
-            ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
-        }
-    }*/
+    private SizeState sizeState;
 
     private void Start()
     {
         float idealDrag = Speed / TerminalVelocity;
         ThisRigidBody2D.linearDamping = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
+
+        sizeState = SizeState.Small;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(SizeChangeKey))
+        {
+            ChangeSize();
+        }
     }
 
     private void FixedUpdate()
@@ -68,6 +64,37 @@ public class PlayerController : MonoBehaviour
 
     private void CheckOnAir()
     {
-        onAir = Mathf.Abs(ThisRigidBody2D.linearVelocityY) > 0.02f;
+        onAir = Mathf.Abs(ThisRigidBody2D.linearVelocityY) > 0.01f;
     }
+
+    private void ChangeSize()
+    {
+        bool isSmall = sizeState == SizeState.Small;
+        if (isSmall)
+        {
+            sizeState = SizeState.Large;
+        }
+        else
+        {
+            sizeState = SizeState.Small;
+        }
+        SmallSprite.enabled = !isSmall;
+        SmallCollider.enabled = !isSmall;
+        LargeSprite.enabled = isSmall;
+        LargeCollider.enabled = isSmall;
+        ThisRigidBody2D.freezeRotation = isSmall;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Target"))
+        {
+            Debug.LogWarning("[DEBUG] Target hit");
+        }
+    }
+}
+
+public enum SizeState
+{
+    Small,
+    Large,
 }
