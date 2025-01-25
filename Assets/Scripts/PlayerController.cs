@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Collider2D SmallCollider;
     public SpriteRenderer LargeSprite;
     public Collider2D LargeCollider;
-
+    
 
     [Header("Movement Params")]
     public float Speed;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool underwater = false;
     private SizeState sizeState;
     private float dynGrav;
+    private bool canLarge = false;
 
     private void Start()
     {
@@ -41,7 +42,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(SizeChangeKey))
         {
-            ChangeSize();
+            if(sizeState == SizeState.Large)
+                ChangeSize();
+            else if (sizeState == SizeState.Small && canLarge)
+            {
+                canLarge = false;
+                ChangeSize();
+            }
         }
     }
 
@@ -83,9 +90,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             ThisRigidBody2D.AddForce(new Vector2(Speed * directionX * SwimPushOffset, Speed * directionY * SwimPushOffset));
-        }
-        
-
+        }        
     }
 
     private void CheckOnAir()
@@ -128,10 +133,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Bubble"))
+        {
+            collision.GetComponent<BubbleObject>().Pop();
+            canLarge = true;
+
+        }
         if (collision.CompareTag("Water"))
         {
             ChangeWater(true);
-            Debug.Log("a");
         }
         if (collision.CompareTag("Target"))
         {
@@ -144,7 +154,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Water"))
         {
             ChangeWater(false);
-            Debug.Log("b");
         }
     }
 

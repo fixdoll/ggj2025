@@ -138,8 +138,11 @@ MonoBehaviour:
   LargeCollider: {fileID: 633648684664819551}
   Speed: 4
   JumpForce: 10
-  PushOffset: 0.05
+  JumpPushOffset: 0.02
+  RollPushOffset: 0.02
+  SwimPushOffset: 5
   TerminalVelocity: 2
+  JumpMultiplier: 2
 --- !u!58 &6163114050333626279
 CircleCollider2D:
   m_ObjectHideFlags: 0
