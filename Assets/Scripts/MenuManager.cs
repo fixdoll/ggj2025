@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public Button PlayButton;
+    public Button LevelSelectButton;
     public List<string> Levels;
     public HorizontalLayoutGroup LevelView;
     public GameObject LevelButton;
@@ -27,20 +28,16 @@ public class MenuManager : MonoBehaviour
     {
         progress = PlayerPrefs.GetInt("Progress", 0);
 
-        if (GameFlowController.Instance.checkGameLaunched())
-        {
-            ShowLevels();
-        }
-        else
-        {
-            DontDestroyOnLoad(GameFlowController.Instance);
-            PlayButton.onClick.AddListener(ShowLevels);
-        }
+        LevelSelectButton.onClick.AddListener(ShowLevels);
+
+        PlayButton.GetComponentInChildren<TextMeshProUGUI>().text = progress == 0 ? "Play" : "Continue";
+        PlayButton.onClick.AddListener(() => { LaunchScene(Levels[progress]); });
 
     }
 
     private void ShowLevels()
     {
+        LevelSelectButton.gameObject.SetActive(false);
         PlayButton.gameObject.SetActive(false);
         for (int i = 0; i < Levels.Count; i++)
         {
