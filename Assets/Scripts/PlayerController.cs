@@ -98,6 +98,12 @@ public class PlayerController : MonoBehaviour
         onAir = Mathf.Abs(ThisRigidBody2D.linearVelocityY) > 0.01f;
     }
 
+    public void MoveToPosition(Vector3 position)
+    {
+        ThisRigidBody2D.linearVelocity = Vector2.zero;
+        transform.position = position;
+    }
+
     private void ChangeSize()
     {
         bool isSmall = sizeState == SizeState.Small;
