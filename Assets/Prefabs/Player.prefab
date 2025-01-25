@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisRigidBody2D: {fileID: 3306583271396643321}
   SizeChangeKey: 32
-  SmallCollider: {fileID: 0}
+  SmallCollider: {fileID: 2554952998615094471}
   Small3D: {fileID: 3938669593984211117}
   LargeCollider: {fileID: 633648684664819551}
   Large3D: {fileID: 4655765759977711698}
