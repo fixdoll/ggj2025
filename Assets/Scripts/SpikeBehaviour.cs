@@ -24,10 +24,7 @@ public class SpikeBehaviour : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            currentCheckpoint = gameplayController.Checkpoints[gameplayController.Checkpoints.Count - 1];
-            playerController.MoveToPosition(currentCheckpoint.transform.position);
-
-
+            GameplayController.Instance.SendPlayerToCurrentCheckpoint();
         }
 
 

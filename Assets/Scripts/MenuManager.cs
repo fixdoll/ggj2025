@@ -29,6 +29,7 @@ public class MenuManager : MonoBehaviour
         progress = PlayerPrefs.GetInt("Progress", 0);
 
         GameFlowController.Instance.Init(LevelsToLoad, progress);
+        DontDestroyOnLoad(GameFlowController.Instance);
 
         LevelSelectButton.onClick.AddListener(ShowLevels);
 
