@@ -185,9 +185,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Propeller"))
+        if (collision.CompareTag("Propeller") && sizeState == SizeState.Large)
         {
-            Debug.Log("hello");
             ThisRigidBody2D.AddForce(collision.transform.rotation * Vector2.up * propellerForce);
         }
     }
