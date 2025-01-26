@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private bool jumpCounter = false;
     private bool underwater = false;
-    private SizeState sizeState;
+    public SizeState sizeState;
     private float dynGrav;
     private bool canLarge = false;
     private float radius;
