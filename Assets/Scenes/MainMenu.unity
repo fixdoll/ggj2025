@@ -774,6 +774,7 @@ MonoBehaviour:
   LevelsToLoad:
   - Level
   - Level 2
+  - Level 3
   LevelView: {fileID: 381208683}
   LevelButton: {fileID: 8810732738321811560, guid: 475d8572bbff2724e98153260c62d455, type: 3}
 --- !u!114 &1949585963
