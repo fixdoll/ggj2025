@@ -13,6 +13,7 @@ TagManager:
   - Collectible
   - Propeller
   - Button
+  - Branch
   layers:
   - Default
   - TransparentFX
