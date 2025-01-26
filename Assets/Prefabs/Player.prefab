@@ -220,6 +220,7 @@ MonoBehaviour:
   TerminalVelocity: 2
   JumpMultiplier: 2
   rotationSpeed: 5
+  propellerForce: 35
 --- !u!70 &2554952998615094471
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

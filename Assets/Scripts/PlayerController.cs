@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float TerminalVelocity = 1f;
     public float JumpMultiplier = 2f;
     public float rotationSpeed = 3f;
+    public float propellerForce = 20f;
 
     private bool jumpCounter = false;
     private bool underwater = false;
@@ -179,6 +180,15 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Water"))
         {
             ChangeWater(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Propeller"))
+        {
+            Debug.Log("hello");
+            ThisRigidBody2D.AddForce(collision.transform.rotation * Vector2.up * propellerForce);
         }
     }
 

@@ -11,6 +11,8 @@ TagManager:
   - Checkpoint
   - Spike
   - Collectible
+  - Propeller
+  - Button
   layers:
   - Default
   - TransparentFX
