@@ -118,6 +118,14 @@ public class PlayerController : MonoBehaviour
 
     public void MoveToPosition(Vector3 position)
     {
+        if (sizeState == SizeState.Large) ChangeSize();
+
+        if (canLarge)
+        {
+            canLarge = false;
+            puffParticle.SetActive(false);
+        }
+
         ThisRigidBody2D.linearVelocity = Vector2.zero;
         transform.position = position;
     }
@@ -172,7 +180,7 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<BubbleObject>().Pop();
             canLarge = sizeState == SizeState.Small;
-        puffParticle.SetActive(true);
+        puffParticle.SetActive(sizeState == SizeState.Small);
 
         }
         if (collision.CompareTag("Water"))
