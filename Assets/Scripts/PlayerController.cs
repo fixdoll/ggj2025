@@ -32,11 +32,13 @@ public class PlayerController : MonoBehaviour
     private bool canLarge = false;
     private float radius;
 
+    private GameObject puffParticle;
+
 
     private void Awake()
     {
-        GetComponentInChildren<ParticleSystem>().Stop();
-
+        puffParticle = transform.GetChild(0).gameObject;
+        puffParticle.SetActive(false);
     }
     private void Start()
     {
@@ -136,7 +138,7 @@ public class PlayerController : MonoBehaviour
             FishAnimator.Play("devolving");
 
         }
-        GetComponentInChildren<ParticleSystem>().Stop();
+        puffParticle.SetActive(false);
 
         SmallCollider.enabled = !isSmall;
         //Small3D.enabled = !isSmall;
@@ -169,7 +171,7 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<BubbleObject>().Pop();
             canLarge = sizeState == SizeState.Small;
-            GetComponentInChildren<ParticleSystem>().Play();
+        puffParticle.SetActive(true);
 
         }
         if (collision.CompareTag("Water"))
