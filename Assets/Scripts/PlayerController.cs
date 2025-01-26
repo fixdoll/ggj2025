@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public MeshRenderer Small3D;
     public Collider2D LargeCollider;
     public MeshRenderer Large3D;
+    public Animator FishAnimator;
 
     [Header("Movement Params")]
     public float Speed;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float SwimPushOffset = 0.2f;
     public float TerminalVelocity = 1f;
     public float JumpMultiplier = 2f;
+    public float rotationSpeed = 3f;
 
     private bool jumpCounter = false;
     private bool underwater = false;
@@ -59,8 +61,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(0, 0, ThisRigidBody2D.linearVelocityY * rotationSpeed);
+
         float directionX = Input.GetAxis("Horizontal");
         float directionY = Input.GetAxis("Vertical");
+
+        if(directionX < 0)
+        {
+            transform.localScale = new Vector3(-1,1,1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1,1,1);
+
+        }
 
         if (!underwater)
         {
@@ -79,6 +93,7 @@ public class PlayerController : MonoBehaviour
         ThisRigidBody2D.linearVelocityY = 0f;
         jumpCounter = false;
         ThisRigidBody2D.AddForceY(JumpForce, ForceMode2D.Impulse);
+        FishAnimator.Play("Armature_jump");
     }
 
     private void SuperJump()
@@ -98,15 +113,17 @@ public class PlayerController : MonoBehaviour
         if (isSmall)
         {
             sizeState = SizeState.Large;
+
+            FishAnimator.Play("evolving");
         }
         else
         {
             sizeState = SizeState.Small;
         }
         SmallCollider.enabled = !isSmall;
-        Small3D.enabled = !isSmall;
+        //Small3D.enabled = !isSmall;
         LargeCollider.enabled = isSmall;
-        Large3D.enabled = isSmall;
+        //Large3D.enabled = isSmall;
         ThisRigidBody2D.freezeRotation = !isSmall;
         transform.rotation = Quaternion.identity;
     }
@@ -119,6 +136,7 @@ public class PlayerController : MonoBehaviour
             ThisRigidBody2D.gravityScale = sizeState == SizeState.Large ? dynGrav * -4f : 0f;
             ThisRigidBody2D.linearDamping *= 2;
             jumpCounter = true;
+            FishAnimator.Play("Armature_swim");
         }
         else
         {
@@ -137,7 +155,11 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("Water"))
         {
+            if(!underwater)
+           {
             ChangeWater(true);
+           } 
+           
         }
         if (collision.CompareTag("Target"))
         {

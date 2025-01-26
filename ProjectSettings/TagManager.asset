@@ -9,6 +9,8 @@ TagManager:
   - Water
   - Bubble
   - Checkpoint
+  - Spike
+  - Collectible
   layers:
   - Default
   - TransparentFX

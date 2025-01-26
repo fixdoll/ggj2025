@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 352536316738031520}
   - component: {fileID: 1931277994419664357}
   - component: {fileID: 2595713085493443875}
+  - component: {fileID: 2985945734030476859}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Ground
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2985945734030476859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123490244258045162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df20e51ca31d64dbdbf1d7d99085b28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
