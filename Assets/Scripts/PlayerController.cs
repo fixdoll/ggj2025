@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, 0, ThisRigidBody2D.linearVelocityY * rotationSpeed);
+        if(sizeState == SizeState.Small)
+            transform.rotation = Quaternion.Euler(0, 0, ThisRigidBody2D.linearVelocityY * rotationSpeed);
 
         float directionX = Input.GetAxis("Horizontal");
         float directionY = Input.GetAxis("Vertical");
@@ -119,6 +120,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             sizeState = SizeState.Small;
+
+            FishAnimator.Play("devolving");
         }
         SmallCollider.enabled = !isSmall;
         //Small3D.enabled = !isSmall;
@@ -136,7 +139,7 @@ public class PlayerController : MonoBehaviour
             ThisRigidBody2D.gravityScale = sizeState == SizeState.Large ? dynGrav * -4f : 0f;
             ThisRigidBody2D.linearDamping *= 2;
             jumpCounter = true;
-            FishAnimator.Play("Armature_swim");
+            if(sizeState == SizeState.Small) FishAnimator.Play("Armature_swim");
         }
         else
         {
@@ -164,6 +167,10 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Target"))
         {
             Debug.LogWarning("[DEBUG] Target hit");
+        }
+        if (collision.CompareTag("Button"))
+        {
+            collision.GetComponent<ButtonObject>().PressButton();
         }
     }
 
