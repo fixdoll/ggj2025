@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
 
         LevelSelectButton.onClick.AddListener(ShowLevels);
 
-        PlayButton.GetComponentInChildren<TextMeshProUGUI>().text = progress == 0 ? "Play" : "Continue";
+
         PlayButton.onClick.AddListener(() => { GameFlowController.Instance.LoadNextLevel(); });
 
     }
