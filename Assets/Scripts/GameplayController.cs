@@ -33,11 +33,16 @@ public class GameplayController : MonoBehaviour
         currentCheckpoint = checkpointId;
     }
 
+    public void SendPlayerToCurrentCheckpoint()
+    {
+        CurrentPlayer.MoveToPosition(Checkpoints[currentCheckpoint].transform.position);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            CurrentPlayer.MoveToPosition(Checkpoints[currentCheckpoint].transform.position);
+            SendPlayerToCurrentCheckpoint();
         }
         if (Input.GetKeyDown(KeyCode.Alpha9)) //this is a cheat
         {
