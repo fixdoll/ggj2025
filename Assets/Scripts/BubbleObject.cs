@@ -6,7 +6,7 @@ public class BubbleObject : MonoBehaviour
     public int RespawnTime = 5;
 
     [Header("References")]
-    public SpriteRenderer ThisSpriteRenderer;
+    public ParticleSystem ThisParticleSystem;
     public Collider2D ThisCollider2D;
 
     
@@ -17,10 +17,10 @@ public class BubbleObject : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        ThisSpriteRenderer.enabled = false;
+        ThisParticleSystem.Stop(ThisParticleSystem);
         ThisCollider2D.enabled = false;
         yield return new WaitForSeconds(RespawnTime);
-        ThisSpriteRenderer.enabled = true;
+        ThisParticleSystem.Play(ThisParticleSystem);
         ThisCollider2D.enabled = true;
         yield break;
     }
