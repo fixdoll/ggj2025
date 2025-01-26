@@ -555,6 +555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e23e912b6def3048b443bf45c4c6672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Levels: []
+  CurrentLevel: 0
 --- !u!4 &1261764978
 Transform:
   m_ObjectHideFlags: 0
@@ -769,10 +771,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayButton: {fileID: 1733778000}
   LevelSelectButton: {fileID: 412953343}
-  Levels:
+  LevelsToLoad:
   - Level
   - Level 2
-  - Level 3
   LevelView: {fileID: 381208683}
   LevelButton: {fileID: 8810732738321811560, guid: 475d8572bbff2724e98153260c62d455, type: 3}
 --- !u!114 &1949585963

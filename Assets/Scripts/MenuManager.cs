@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
 {
     public Button PlayButton;
     public Button LevelSelectButton;
-    public List<string> Levels;
+    public List<string> LevelsToLoad;
     public HorizontalLayoutGroup LevelView;
     public GameObject LevelButton;
 
@@ -28,10 +28,12 @@ public class MenuManager : MonoBehaviour
     {
         progress = PlayerPrefs.GetInt("Progress", 0);
 
+        GameFlowController.Instance.Init(LevelsToLoad, progress);
+
         LevelSelectButton.onClick.AddListener(ShowLevels);
 
         PlayButton.GetComponentInChildren<TextMeshProUGUI>().text = progress == 0 ? "Play" : "Continue";
-        PlayButton.onClick.AddListener(() => { LaunchScene(Levels[progress]); });
+        PlayButton.onClick.AddListener(() => { GameFlowController.Instance.LoadNextLevel(); });
 
     }
 
@@ -39,19 +41,14 @@ public class MenuManager : MonoBehaviour
     {
         LevelSelectButton.gameObject.SetActive(false);
         PlayButton.gameObject.SetActive(false);
-        for (int i = 0; i < Levels.Count; i++)
+        for (int i = 0; i < LevelsToLoad.Count; i++)
         {
-            string level = Levels[i];
+            string level = LevelsToLoad[i];
             var button = Instantiate(LevelButton, LevelView.transform);
             bool current = i == progress;
             bool locked = i > progress;
 
             button.GetComponent<LevelButtonHandler>().ButtonInit(level, current, locked);
         }
-    }
-
-    private void LaunchScene(string levelName)
-    {
-        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
 }
