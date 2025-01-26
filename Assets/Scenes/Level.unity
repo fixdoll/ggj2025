@@ -8656,6 +8656,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6873365295164570674, guid: 258e4d9c82a5f9a4d97c0aee1ed08331, type: 3}
+      propertyPath: m_Size.y
+      value: 6.110415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873365295164570674, guid: 258e4d9c82a5f9a4d97c0aee1ed08331, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.136451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24002,17 +24010,17 @@ PolygonCollider2D:
       - {x: 10.565042, y: 3.4213495}
       - {x: 11.724742, y: 2.8303013}
       - {x: 12.406494, y: 2.445362}
-      - {x: 12.967235, y: 2.051735}
-      - {x: 13.459223, y: 1.7275751}
-      - {x: 13.882654, y: 1.4273541}
-      - {x: 16.549393, y: 0.47010076}
-      - {x: 16.80418, y: 0.3648495}
-      - {x: 17.036455, y: 0.44122607}
-      - {x: 19.01974, y: 0.9806024}
-      - {x: 19.559515, y: 1.0904868}
-      - {x: 19.753056, y: 0.89484}
-      - {x: 18.858318, y: -0.84217876}
-      - {x: 17.66855, y: -3.431745}
+      - {x: 13.008702, y: 2.1863432}
+      - {x: 13.492779, y: 2.0243554}
+      - {x: 14.31888, y: 1.6669874}
+      - {x: 17.890137, y: 1.048065}
+      - {x: 18.16146, y: 0.9934978}
+      - {x: 18.40191, y: 1.0726639}
+      - {x: 20.91517, y: 1.8206306}
+      - {x: 21.428444, y: 1.9395022}
+      - {x: 21.621983, y: 1.7438552}
+      - {x: 20.242702, y: -0.21327835}
+      - {x: 18.153084, y: -3.2116299}
       - {x: 15.562613, y: -5.5643854}
       - {x: 10.389666, y: -7.00708}
       - {x: 5.1130624, y: -7.4402404}
@@ -24081,9 +24089,9 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 19.753056, y: 0.89484, z: 0}
-      leftTangent: {x: -2.408331, y: -2.3823826, z: 0}
-      rightTangent: {x: -0.9542618, y: -0.87425375, z: 0}
+    - position: {x: 21.621983, y: 1.7438552, z: 0}
+      leftTangent: {x: -2.4083347, y: -2.3823824, z: 0}
+      rightTangent: {x: -0.95427895, y: -0.8742533, z: 0}
       mode: 2
       height: 1
       spriteIndex: 0
@@ -24136,17 +24144,17 @@ MonoBehaviour:
   - {x: 10.565042, y: 3.4213495}
   - {x: 11.724742, y: 2.8303013}
   - {x: 12.406494, y: 2.445362}
-  - {x: 12.967235, y: 2.051735}
-  - {x: 13.459223, y: 1.7275751}
-  - {x: 13.882654, y: 1.4273541}
-  - {x: 16.549393, y: 0.47010076}
-  - {x: 16.80418, y: 0.3648495}
-  - {x: 17.036455, y: 0.44122607}
-  - {x: 19.01974, y: 0.9806024}
-  - {x: 19.559515, y: 1.0904868}
-  - {x: 19.753056, y: 0.89484}
-  - {x: 18.858318, y: -0.84217876}
-  - {x: 17.66855, y: -3.431745}
+  - {x: 13.008702, y: 2.1863432}
+  - {x: 13.492779, y: 2.0243554}
+  - {x: 14.31888, y: 1.6669874}
+  - {x: 17.890137, y: 1.048065}
+  - {x: 18.16146, y: 0.9934978}
+  - {x: 18.40191, y: 1.0726639}
+  - {x: 20.91517, y: 1.8206306}
+  - {x: 21.428444, y: 1.9395022}
+  - {x: 21.621983, y: 1.7438552}
+  - {x: 20.242702, y: -0.21327835}
+  - {x: 18.153084, y: -3.2116299}
   - {x: 15.562613, y: -5.5643854}
   - {x: 10.389666, y: -7.00708}
   - {x: 5.1130624, y: -7.4402404}
@@ -24203,8 +24211,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 439512007479455189, guid: 138ca5c27320648688fba28b18cc3db3, type: 3}
   m_LocalAABB:
-    m_Center: {x: 8.151275, y: -2.0627527, z: 0}
-    m_Extent: {x: 11.826824, y: 5.6354437, z: 0}
+    m_Center: {x: 9.085738, y: -2.0627527, z: 0}
+    m_Extent: {x: 12.761288, y: 5.6354437, z: 0}
   m_SpriteSortPoint: 0
 --- !u!1001 &1048028222
 PrefabInstance:
@@ -28074,6 +28082,14 @@ PrefabInstance:
     - target: {fileID: 5259178742598098924, guid: 258e4d9c82a5f9a4d97c0aee1ed08331, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873365295164570674, guid: 258e4d9c82a5f9a4d97c0aee1ed08331, type: 3}
+      propertyPath: m_Size.y
+      value: 5.027889
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873365295164570674, guid: 258e4d9c82a5f9a4d97c0aee1ed08331, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0246332
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
