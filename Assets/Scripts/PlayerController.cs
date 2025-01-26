@@ -30,9 +30,12 @@ public class PlayerController : MonoBehaviour
     private SizeState sizeState;
     private float dynGrav;
     private bool canLarge = false;
+    private float radius;
 
     private void Start()
     {
+        radius = ((CapsuleCollider2D)SmallCollider).size.x;
+
         float idealDrag = Speed / TerminalVelocity;
         ThisRigidBody2D.linearDamping = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
 
@@ -195,7 +198,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground") && sizeState == SizeState.Small && !underwater)
         {
-            Jump();
+            var hit = Physics2D.Raycast(transform.position, Vector2.down, radius);
+            if (collision.collider == hit.collider) Jump();
         }
     }
 }
