@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Bubble"))
         {
             collision.GetComponent<BubbleObject>().Pop();
-            canLarge = true;
+            canLarge = sizeState == SizeState.Small;
 
         }
         if (collision.CompareTag("Water"))
