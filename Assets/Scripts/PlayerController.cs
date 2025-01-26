@@ -74,20 +74,21 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(sizeState == SizeState.Small)
-            transform.rotation = Quaternion.Euler(0, 0, ThisRigidBody2D.linearVelocityY * rotationSpeed);
-
+        
         float directionX = Input.GetAxis("Horizontal");
         float directionY = Input.GetAxis("Vertical");
 
         if(directionX < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
+            if (sizeState == SizeState.Small)
+                transform.rotation = Quaternion.Euler(0, 0, 360 - (ThisRigidBody2D.linearVelocityY * rotationSpeed));
         }
         else
         {
             transform.localScale = new Vector3(1,1,1);
-
+            if (sizeState == SizeState.Small)
+                transform.rotation = Quaternion.Euler(0, 0, ThisRigidBody2D.linearVelocityY * rotationSpeed);
         }
 
         if (!underwater)
